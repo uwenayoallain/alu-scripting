@@ -17,8 +17,12 @@ def top_ten(subreddit):
                            'User-Agent': 'Mozilla/5.0'})
 
     if res.status_code != 200:
-        print("OK", end="")
+        print("None", end="")
     else:
         json_response = res.json()
         posts = json_response.get('data').get('children')
-        [print(post.get('data').get('title')) for post in posts]
+        for i, post in enumerate(posts):
+            if i == len(posts) - 1:
+                print(post.get('data').get('title'), end="")
+            else:
+                print(post.get('data').get('title'))
